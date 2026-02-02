@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking page</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffbf0; 
+    margin: 0;
+    padding: 0;
+    color: #004d40; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #004d40;
+    color: #ffffff;
+    padding: 10px 20px; 
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header .back-arrow {
+    position: absolute;
+    left: 20px;
+}
+
+.header .home-link {
+    position: absolute;
+    right: 20px; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.header h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.5em; 
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+}
+
+.room-card {
+    background-color: white;
+    border-radius: 12px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+}
+
+.room-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+}
+
+.room-card .room-info {
+    padding: 15px;
+}
+
+.room-card .room-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #004d40;
+}
+
+.room-card .room-description {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.room-card .room-amenities {
+    font-size: 12px;
+    color: #777;
+    margin-top: 10px;
+}
+
+.room-card .room-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d32f2f;
+    margin-top: 15px;
+}
+
+.room-card .room-discounted-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 5px;
+}
+
+.room-card .room-adults,
+.room-card .room-children,
+.room-card .room-rooms {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.room-card .input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.room-card .input-group label {
+    font-size: 14px;
+    color: #555;
+}
+
+.room-card .input-group input {
+    width: 60px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.room-card .select-room-label {
+    font-size: 14px;
+    color: #004d40;
+}
+
+.room-card .select-room-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room-card input[type="checkbox"] {
+    margin-left: 10px;
+}
+
+.book-now-btn {
+    display: none;
+    position: fixed;
+    bottom: 80px; 
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    background: #004d40;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #004d40;
+    color: white;
+    text-align: center;
+    position: relative; 
+    margin-top: auto; 
+    width: 100%;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+    color: red;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../search-details/search-resultsPHP.php"><img src="Back Arrow.png" width="35px"></a>
+        <h1>Choose your stay</h1>
+        <h3>
+            <a href="../sign-home/Home-(HB).html" class="home-link">Home</a>
+        </h3>
+    </div>
+
+    <div class="container">
+        <div class="room-card">
+            <img src="Single Room.jpg" alt="Single Room">
+            <div class="room-info">
+                <p class="room-title">Single Room</p>
+                <p class="room-description">A cozy room with a Twin Sized bed.</p>
+                <p class="room-amenities">Amenities: Air conditioning</p>
+                <p class="room-price"><span class="strikethrough">USD 140</span></p>
+                <p class="room-discounted-price">USD 80</p>
+
+                <div class="input-group">
+                    <label for="numAdultsSingle">Adults:</label>
+                    <input type="number" id="numAdultsSingle" value="1" min="1" max="2">
+                </div>
+                <div class="input-group">
+                    <label for="numChildrenSingle">Children:</label>
+                    <input type="number" id="numChildrenSingle" value="0" min="0" max="0">
+                </div>
+                <div class="input-group">
+                    <label for="numRoomsSingle">Rooms:</label>
+                    <input type="number" id="numRoomsSingle" value="1" min="1" max="1">
+                </div>
+
+                <div class="select-room-container">
+                    <label for="selectSingleRoom" class="select-room-label">Select Your Room</label>
+                    <input type="checkbox" id="selectSingleRoom" name="roomSelection" onclick="showBookNow()">
+                </div>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <img src="Double Room.jpg" alt="Double Room">
+            <div class="room-info">
+                <p class="room-title">Double Room</p>
+                <p class="room-description">A spacious room with a Queen Sized bed.</p>
+                <p class="room-amenities">Amenities: Mini Bar, Air conditioning</p>
+                <p class="room-price"><span class="strikethrough">USD 300</span></p>
+                <p class="room-discounted-price">USD 150</p>
+
+                <div class="input-group">
+                    <label for="numAdultsDouble">Adults:</label>
+                    <input type="number" id="numAdultsDouble" value="2" min="1" max="2">
+                </div>
+                <div class="input-group">
+                    <label for="numChildrenDouble">Children:</label>
+                    <input type="number" id="numChildrenDouble" value="0" min="0" max="0">
+                </div>
+                <div class="input-group">
+                    <label for="numRoomsDouble">Rooms:</label>
+                    <input type="number" id="numRoomsDouble" value="1" min="1" max="1">
+                </div>
+
+                <div class="select-room-container">
+                    <label for="selectDoubleRoom" class="select-room-label">Select Your Room</label>
+                    <input type="checkbox" id="selectDoubleRoom" name="roomSelection" onclick="showBookNow()">
+                </div>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <img src="Suite Room.jpg" alt="Suite Room">
+            <div class="room-info">
+                <p class="room-title">Suite Room</p>
+                <p class="room-description">A luxurious suite with a king Sized bed and sofa.</p>
+                <p class="room-amenities">Amenities: Mini Bar, Air conditioning</p>
+                <p class="room-price"><span class="strikethrough">USD 599</span></p>
+                <p class="room-discounted-price">USD 300</p>
+
+                <div class="input-group">
+                    <label for="numAdultsSuite">Adults:</label>
+                    <input type="number" id="numAdultsSuite" value="2" min="1" max="2">
+                </div>
+                <div class="input-group">
+                    <label for="numChildrenSuite">Children:</label>
+                    <input type="number" id="numChildrenSuite" value="0" min="0" max="2">
+                </div>
+                <div class="input-group">
+                    <label for="numRoomsSuite">Rooms:</label>
+                    <input type="number" id="numRoomsSuite" value="1" min="1" max="1">
+                </div>
+
+                <div class="select-room-container">
+                    <label for="selectSuiteRoom" class="select-room-label">Select Your Room</label>
+                    <input type="checkbox" id="selectSuiteRoom" name="roomSelection" onclick="showBookNow()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="./PaymentPHP.php" class="book-now-btn" id="bookNowButton">Book Now</a>
+
+    <footer>
+        <p>&copy; 2025 Hotels Booking. All rights reserved.</p>
+    </footer>
+
+    <script>
+        
+        function showBookNow() {
+            const checkboxes = document.querySelectorAll('input[name="roomSelection"]:checked');
+            const bookNowButton = document.getElementById("bookNowButton");
+
+            if (checkboxes.length > 0) {
+                bookNowButton.style.display = "block";
+            } else {
+                bookNowButton.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

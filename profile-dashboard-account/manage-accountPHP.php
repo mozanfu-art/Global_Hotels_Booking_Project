@@ -1,0 +1,182 @@
+<?php
+include '../db-connect.php';
+session_start();
+
+
+if (!isset($_SESSION['UserID'])) {
+    header("Location: ../sign-home/login.php");
+    exit();
+}
+
+$user_id = $_SESSION['UserID'];
+
+
+$sql = "SELECT FName FROM users WHERE UserID = ?";
+$stmt = $conn->prepare($sql);
+
+
+if ($stmt === false) {
+    
+    die('Error preparing the statement: ' . $conn->error);
+}
+
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    
+    $user = null;  
+}
+
+
+$stmt->close();
+
+
+$conn->close();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffbf0; 
+    margin: 0;
+    padding: 0;
+    color: #004d40; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #004d40;
+    color: #ffffff;
+    padding: 10px 20px; 
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header .back-arrow {
+    position: absolute;
+    left: 20px;
+}
+
+.header .home-link {
+    position: absolute;
+    right: 20px; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.header h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.5em; 
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.account-options {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account-options .account-button {
+    display: inline-block;
+    background-color: #004d40;
+    color: #ffffff;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.account-options .account-button:hover {
+    background-color: #00392e;
+}
+
+.account-options .account-button i {
+    margin-right: 10px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #004d40;
+    color: white;
+    text-align: center;
+    position: relative; 
+    margin-top: auto; 
+    width: 100%;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+    <a href="../sign-home/Home-(HB).html"><img src="Back Arrow.png" width="35px"></a>
+        <h1>Manage Account</h1>
+        <h3>
+            <a href="../sign-home/Home-(HB).html" class="home-link">Home</a>
+        </h3>
+    </div>
+
+    <div class="container account-page">
+        <div class="account-options">
+            
+
+            <a href="./user-profilePHP.php" class="account-button">
+                <i class="fas fa-user-edit"></i> Edit Your Profile
+            </a>
+            <a href="./user-booking.php" class="account-button">
+                <i class="fas fa-calendar-check"></i> Your Bookings
+            </a>
+            <a href="../confirmation-reviews-feedbacks/reviewsPHP.php" class="account-button">
+                <i class="fas fa-star"></i> Your Staying Reviews
+            </a>
+            <a href="../confirmation-reviews-feedbacks/feedbackPHP.php" class="account-button">
+                <i class="fas fa-star"></i> Your App Feedbacks
+            </a>
+            <a href="../booking-payment-settings/settingsPHP.php" class="account-button">
+                <i class="fas fa-cog"></i> Manage Settings
+            </a>
+            <a href="../sign-home/Logout.php" class="account-button">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Hotels Booking. All rights reserved.</p>
+    </footer>
+</body>
+</html>
