@@ -3,7 +3,7 @@
     "description": "Hotels Booking Web Application",
     "type": "project",
     "require": {
-        "php": ">=7.4"
+        "php": ">=8.0"
     },
     "scripts": {
         "start": "php -S 0.0.0.0:$PORT"
