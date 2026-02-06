@@ -1,6 +1,6 @@
 <?php 
 
-include '../db-connect.php';
+include __DIR__.'/db-connect.php';
 session_start();
 
 

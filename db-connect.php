@@ -1,8 +1,9 @@
 <?php
-$servername = getenv('MYSQLHOST');      // Railway host
-$username   = getenv('MYSQLUSER');      // Railway username
-$password   = getenv('MYSQLPASSWORD');  // Railway password
-$dbname     = getenv('MYSQLDATABASE');  // Railway database
+$servername = getenv('RAILWAY_MYSQL_HOST');
+$username   = getenv('RAILWAY_MYSQL_USER');
+$password   = getenv('RAILWAY_MYSQL_PASSWORD');
+$dbname     = getenv('RAILWAY_MYSQL_DATABASE');
+$port       = getenv('RAILWAY_MYSQL_PORT'); // optional, default 3306
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

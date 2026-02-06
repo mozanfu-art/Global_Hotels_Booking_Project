@@ -1,5 +1,5 @@
 <?php
-include 'db-connect.php';
+include __DIR__.'/db-connect.php';
 
 $hotels = [];
 
