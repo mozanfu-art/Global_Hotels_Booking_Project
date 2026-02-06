@@ -1,8 +1,8 @@
 <?php
-$servername = "mysql.railway.internal";
-$username = "root";
-$password = "pWdzfiXDERePDBdxujdVHludnwhRvBPv";
-$dbname = "railway";
+$servername = getenv('MYSQLHOST') ?: "mysql.railway.internal";
+$username = getenv('MYSQLUSER') ?: "root";
+$password = getenv('MYSQLPASSWORD') ?: "pWdzfiXDERePDBdxujdVHludnwhRvBPv";
+$dbname = getenv('MYSQLDATABASE') ?: "railway";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
