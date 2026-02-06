@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `existing_reservations`
 --
 
+CREATE DATABASE IF NOT EXISTS `global_hotels_booking` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `global_hotels_booking`;
+
 CREATE TABLE `existing_reservations` (
   `ReservationID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
