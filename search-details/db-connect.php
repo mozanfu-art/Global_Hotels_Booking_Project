@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname = "global_hotels_booking"; 
+$servername = "MySQL.railway.internal";
+$username = "root";
+$password = "pWdzfiXDERePDBdxujdVHludnwhRvBPv";
+$dbname = "railway";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
