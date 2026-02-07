@@ -1,15 +1,22 @@
 <?php
-$servername = getenv('RAILWAY_MYSQL_HOST');
-$username   = getenv('RAILWAY_MYSQL_USER');
-$password   = getenv('RAILWAY_MYSQL_PASSWORD');
-$dbname     = getenv('RAILWAY_MYSQL_DATABASE');
-$port       = getenv('RAILWAY_MYSQL_PORT'); // optional, default 3306
+// db-connect.php
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Load environment variables from Railway or fallback to local defaults
+$servername = getenv('MYSQLHOST') ?: "127.0.0.1";
+$username   = getenv('MYSQLUSER') ?: "root";
+$password   = getenv('MYSQLPASSWORD') ?: "your_local_password"; // change locally
+$dbname     = getenv('MYSQLDATABASE') ?: "global_hotels_booking";
+$port       = getenv('MYSQLPORT') ?: 3306;
 
+// Create a MySQLi connection
+$conn = @new mysqli($servername, $username, $password, $dbname, $port);
+
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: (" . $conn->connect_errno . ") " . $conn->connect_error);
 }
 
-$conn->set_charset("utf8");
+// Optional: Uncomment to test connection
+// echo "Connected successfully to $servername:$port, DB: $dbname";
+
 ?>
