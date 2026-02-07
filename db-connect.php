@@ -2,9 +2,9 @@
 // db-connect.php
 
 // Load environment variables from Railway or fallback to local defaults
-$servername = getenv('MYSQLHOST') ?: "127.0.0.1";
+$servername = getenv('MYSQLHOST') ?: "MySQL.railway.internal";
 $username   = getenv('MYSQLUSER') ?: "root";
-$password   = getenv('MYSQLPASSWORD') ?: "your_local_password"; // change locally
+$password   = getenv('MYSQLPASSWORD') ?: "pWdzfiXDERePDBdxujdVHludnwhRvBPv"; // change locally
 $dbname     = getenv('MYSQLDATABASE') ?: "global_hotels_booking";
 $port       = getenv('MYSQLPORT') ?: 3306;
 
