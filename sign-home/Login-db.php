@@ -1,6 +1,14 @@
 <?php
+include __DIR__.'/../db-connect.php';
 session_start();
-include __DIR__.'/db-connect.php';
+
+
+if (!isset($_SESSION['UserID'])) {
+    header("Location: ../sign-home/Login-db.php");
+    exit();
+}
+
+$userID = $_SESSION['UserID'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['Email'];

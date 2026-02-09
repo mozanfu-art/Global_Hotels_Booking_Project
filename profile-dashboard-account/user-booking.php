@@ -1,9 +1,9 @@
 <?php
 session_start();
-include __DIR__.'/db-connect.php';
+include __DIR__.'/../db-connect.php';
 
 if (!isset($_SESSION['UserID'])) {
-    header("Location: ../sign-home/login.php");
+    header("Location: ../sign-home/Login-db.php");
     exit();
 }
 
