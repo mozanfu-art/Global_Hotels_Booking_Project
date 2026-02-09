@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `global_hotels_booking` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `global_hotels_booking`;
 
-CREATE TABLE `existing_reservations` (
+CREATE TABLE IF NOT EXISTS `existing_reservations` (
   `ReservationID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
   `ReviewID` int(11) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `existing_reservations` (
 -- Table structure for table `feedback`
 --
 
-CREATE TABLE `feedback` (
+CREATE TABLE IF NOT EXISTS `feedback` (
   `RateID` int(11) NOT NULL,
   `UserID` int(11) DEFAULT NULL,
   `Feedback` text DEFAULT NULL,
@@ -92,7 +92,7 @@ INSERT INTO `hotels` (`HotelID`, `Hotel_name`, `Country`, `City`, `Address`, `St
 -- Table structure for table `hotel_reviews`
 --
 
-CREATE TABLE `hotel_reviews` (
+CREATE TABLE IF NOT EXISTS `hotel_reviews` (
   `created_at` date DEFAULT NULL,
   `full_name` varchar(50) NOT NULL,
   `user_email` varchar(50) NOT NULL,
@@ -145,7 +145,7 @@ INSERT INTO `payment` (`PaymentID`, `ReservationID`, `Payment_method`, `Amount`,
 -- Table structure for table `reports`
 --
 
-CREATE TABLE `reports` (
+CREATE TABLE IF NOT EXISTS `reports` (
   `ReportID` int(11) NOT NULL,
   `UserID` int(11) DEFAULT NULL,
   `ReportType` enum('Bookings','Revenues','Users','Hotels','Feedbacks') NOT NULL,
@@ -167,7 +167,7 @@ INSERT INTO `reports` (`ReportID`, `UserID`, `ReportType`, `ReportData`, `Report
 -- Table structure for table `reservations`
 --
 
-CREATE TABLE `reservations` (
+CREATE TABLE IF NOT EXISTS `reservations` (
   `id` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
   `RoomID` int(11) NOT NULL,
@@ -205,7 +205,7 @@ INSERT INTO `reservations` (`id`, `UserID`, `RoomID`, `CheckIn_date`, `CheckOut_
 -- Table structure for table `reserved_rooms`
 --
 
-CREATE TABLE `reserved_rooms` (
+CREATE TABLE IF NOT EXISTS `reserved_rooms` (
   `Reserved_rooms_ID` int(11) NOT NULL,
   `ReservationID` int(11) NOT NULL,
   `RoomID` int(11) NOT NULL,
@@ -226,7 +226,7 @@ INSERT INTO `reserved_rooms` (`Reserved_rooms_ID`, `ReservationID`, `RoomID`, `Q
 -- Table structure for table `rooms`
 --
 
-CREATE TABLE `rooms` (
+CREATE TABLE IF NOT EXISTS `rooms` (
   `RoomID` int(11) NOT NULL,
   `HotelID` int(11) NOT NULL,
   `max_guests` int(11) NOT NULL,
@@ -257,7 +257,7 @@ INSERT INTO `rooms` (`RoomID`, `HotelID`, `max_guests`, `max_rooms`, `Room_type`
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `UserID` int(11) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
