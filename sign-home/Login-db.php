@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($row['Role'] == 'Admin') {
             header("Location: ../profile-dashboard-account/admin-dashboard.html");
         } else {
-            header("Location: Start-(HB).html");
+            header("Location: Home-(HB).html");
         }
     } else {
         // Invalid credentials
