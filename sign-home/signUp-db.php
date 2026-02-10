@@ -1,8 +1,7 @@
 <?php
 include __DIR__.'/../db-connect.php';
+session_start();
 
-
-$userID = $_SESSION['UserID'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["Email"];
@@ -18,16 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $checkEmailStmt->store_result();
 
     if ($checkEmailStmt->num_rows > 0) {
-        echo createResponsePage("Your Account already exists", "Go to Login", "LOGIN", "http://localhost/HBproject/sign-home/Start-(HB).html");
+        echo createResponsePage("Your Account already exists", "Go to Login", "LOGIN", "https://web-production-d46d0.up.railway.app/sign-home/Start-(HB).html");
     } else {
 
         $stmt = $conn->prepare("INSERT INTO users (Email, Password, FName, LName, BirthDate, Phone) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $email, $pass, $First_NM, $Last_NM, $date, $num);
 
         if ($stmt->execute()) {
-            echo createResponsePage("Account created successfully", "Login Now", "LOGIN", "http://localhost/HBproject/sign-home/Start-(HB).html");
+            echo createResponsePage("Account created successfully", "Login Now", "LOGIN", "https://web-production-d46d0.up.railway.app/sign-home/Start-(HB).html");
         } else {
-            echo createResponsePage("Something went wrong", "Try again", "SignUp", "http://localhost/HBproject/sign-home/SignUp-(HB).html");
+            echo createResponsePage("Something went wrong", "Try again", "SignUp", "https://web-production-d46d0.up.railway.app/sign-home/signUp-db.php");
         }
 
         $stmt->close();

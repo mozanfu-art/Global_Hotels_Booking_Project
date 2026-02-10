@@ -1,5 +1,6 @@
 <?php
 include __DIR__.'/../db-connect.php';
+session_start();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
